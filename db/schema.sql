@@ -1,14 +1,9 @@
-DROP TABLE IF EXISTS comments;
+DROP DATABASE IF EXISTS melanated_diamonds_dev;
+CREATE DATABASE melanated_diamonds_dev;
 
-DROP TABLE IF EXISTS favorites;
-
-DROP TABLE IF EXISTS user_profile;
-
-DROP TABLE IF EXISTS login;
+\c melanated_diamonds_dev;
 
 DROP TABLE IF EXISTS businesses;
-
-DROP TABLE IF EXISTS referrals;
 
 CREATE TABLE businesses (
     id SERIAL PRIMARY KEY, 
@@ -21,9 +16,10 @@ CREATE TABLE businesses (
     img TEXT,
     category TEXT,
     website TEXT,
-    description TEXT,
-    place_id TEXT
+    description TEXT
 );
+
+DROP TABLE IF EXISTS login;
 
 CREATE TABLE login (
     first_name TEXT,
@@ -32,6 +28,7 @@ CREATE TABLE login (
     password TEXT
 );
 
+DROP TABLE IF EXISTS user_profile;
 
 CREATE TABLE user_profile (
     id SERIAL PRIMARY KEY,
@@ -44,12 +41,14 @@ CREATE TABLE user_profile (
     uid TEXT
 );
 
+DROP TABLE IF EXISTS favorites;
 
 CREATE TABLE favorites (
     business_id INT,
     user_id TEXT
 );
 
+DROP TABLE IF EXISTS comments;
 
 CREATE TABLE comments (
  id SERIAL PRIMARY KEY,
@@ -57,15 +56,4 @@ CREATE TABLE comments (
  content TEXT,
  business_id INTEGER REFERENCES businesses (id)
  ON DELETE CASCADE
-);
-
-CREATE TABLE referrals (
-    id SERIAL PRIMARY KEY,
-    business_name TEXT,
-    website TEXT,
-    phone TEXT,
-    email TEXT,
-    instagram TEXT,
-    facebook TEXT,
-    twitter TEXT
 );
